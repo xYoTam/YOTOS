@@ -23,16 +23,17 @@
 
 ```
 .
-├── boot/        Multiboot header (NASM)
-├── kernel/      GDT, IDT, PMM, VMM, heap, processes, ELF loader, syscalls
-├── drivers/     VGA, keyboard, timer, ATA, UART
-├── fs/          VFS layer and FAT16 implementation
-├── shell/       Shell and built-in commands
-├── klibc/       Minimal libc (stdio, string)
-├── user/        User-mode programs (hello, snake)
-├── include/     Header files
-├── linker.ld    Kernel linker script (loads at 2 MB)
-├── grub.cfg     GRUB bootloader config
+├── boot/                Multiboot header (NASM)
+├── kernel/              GDT, IDT, PMM, VMM, heap, processes, ELF loader, syscalls
+├── drivers/             VGA, keyboard, timer, ATA, UART
+├── fs/                  VFS layer and FAT16 implementation
+├── shell/               Shell and built-in commands
+├── klibc/               Minimal libc (stdio, string)
+├── user/                User-mode programs (hello, snake)
+├── include/             Header files
+├── linker.ld            Kernel linker script (loads at 2 MB)
+├── grub.cfg             GRUB bootloader config
+├── yotos_terminal.py    A client for a remote connection to the terminal of YOTOS
 └── makefile
 ```
 
