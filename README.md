@@ -39,7 +39,7 @@
 
 ---
 
-## Quick start (no build required)
+## Quick start (no build required - So Windows users can run the project too)
 
 ---
 
@@ -51,9 +51,9 @@ Download `yotos.iso` and `disk.img` from the [latest release](../../releases/lat
 
 > Adjust the QEMU path to match your installation. Download QEMU for Windows at https://www.qemu.org/download/#windows
 
----
 
 ---
+
 
 ## Building
 
