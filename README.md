@@ -49,6 +49,7 @@ Download `yotos.iso` and `disk.img` from the [latest release](../../releases/lat
 "C:\Program Files\qemu\qemu-system-i386.exe" -boot d -cdrom yotos.iso -drive file=disk.img,format=raw,index=1,media=disk -serial tcp::4444,server,nowait
 ```
 
+---
 > Adjust the QEMU path to match your installation. Download QEMU for Windows at https://www.qemu.org/download/#windows
 
 
