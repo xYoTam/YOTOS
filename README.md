@@ -5,15 +5,17 @@
 
 ## Features
 
-- **Protected mode** — full 32-bit x86 protected mode with GDT and IDT
+- **Protected mode** — full 32-bit x86 protected mode with GDT (ring 0/3 segments)
 - **Memory management** — physical memory manager (bitmap allocator), paging (VMM), kernel heap
-- **Interrupts** — 32 ISR stubs, IRQ remapping via PIC 8259, syscalls via `int 0x80`
+- **Interrupts** — IDT: 32 ISR stubs, IRQ remapping via PIC 8259, syscalls via `int 0x80`
 - **Processes** — ELF binary loader, user-mode execution (ring 3), TSS
 - **Drivers** — VGA text mode (80×25), PS/2 keyboard, PIT timer, ATA/IDE disk, UART serial
 - **Filesystem** — VFS abstraction layer with a full FAT16 implementation
 - **Shell** — interactive shell with built-in commands
 - **User programs** — hello world and a playable Snake game
 - **klibc** — minimal C library (printf, string utilities)
+- **UART terminal** — `yotos_terminal.py`, a pygame GUI client that connects to the UART serial port over TCP and lets you interact with the OS remotely
+
 
 ---
 
@@ -44,6 +46,7 @@ You need a Linux environment (native or WSL).
 
 ```bash
 sudo apt install nasm make qemu-system-x86 grub-pc-bin xorriso mtools dosfstools
+for the python remote client: pip install pygame
 ```
 
 You also need an **i686-elf cross-compiler**. Follow the [OSDev GCC Cross-Compiler guide](https://wiki.osdev.org/GCC_Cross-Compiler) to build it, then add it to your `PATH`.
@@ -78,25 +81,21 @@ Output goes to `build/`:
 make run
 ```
 
-### Windows (QEMU installed)
-```bash
-make run-win
-```
-
-This boots the ISO in QEMU with the FAT16 disk attached. A serial port is available on TCP port 4444 for debugging — connect with `nc localhost 4444`.
+This boots the ISO in QEMU with the FAT16 disk attached. A serial port is available on TCP port 4444 for a telnet like protocol.
 
 ---
 
 ## Shell commands
 
 ```
-ls              List files
-cat <file>      Print file contents
-cd <dir>        Change directory
-mkdir <dir>     Create a directory
-touch <file>    Create an empty file
-echo <text>     Print text
-exec <file>     Execute a user ELF binary
+ls                          List files
+cat <file>                  Print file contents
+cd <dir>                    Change directory
+mkdir <dir>                 Create a directory
+touch <file>                Create an empty file
+echo <text>                 Print text
+echo <text> '>' <files>     Create a files with text in it
+exec <file>                 Execute a user ELF binary
 ```
 
 ### Running Snake
@@ -105,7 +104,7 @@ exec <file>     Execute a user ELF binary
 exec SNAKE.ELF
 ```
 
-Use the arrow keys to move. Press `q` to quit.
+Use wasd keys to move. Press `q` to quit.
 
 ---
 
